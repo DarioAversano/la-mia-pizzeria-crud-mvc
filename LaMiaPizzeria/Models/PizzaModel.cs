@@ -13,19 +13,18 @@ namespace LaMiaPizzeria.Models
         public string Descrizione { get; set; }
         [MaxLength(300)]
         public string Immagine { get; set; }
-        [MaxLength(100)]
+        [MaxLength(300)]
         public float Prezzo { get; set; }
 
     
 
-    public PizzaModel(int id, string nomePizza, string descrizione, string immagine, float prezzo)
-    {
-        Id = id;
-        NomePizza = nomePizza;
-        Descrizione = descrizione;
-        Immagine = immagine;
-            Prezzo = prezzo;
-    }
+        public PizzaModel(string nomePizza, string descrizione, string immagine, float prezzo)
+        {
+            NomePizza = nomePizza;
+            Descrizione = descrizione;
+            Immagine = immagine;
+                Prezzo = prezzo;
+        }
 
-}
+    }
 }
