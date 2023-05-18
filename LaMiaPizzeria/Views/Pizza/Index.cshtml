@@ -1,0 +1,11 @@
+﻿                      @model List<PizzaModel> 
+                      
+@foreach(PizzaModel pizza in Model)
+                        {
+<tr style="color: darkorange; font-weight: bold">
+    <th class="border border-3" scope="row">@pizza.NomePizza</th>
+    <td class="border border-3">@pizza.Descrizione</td>
+    <td class="border border-3"><img class="img-fluid img_square" src="@pizza.Immagine" alt="@pizza.NomePizza"></td>
+    <td class="border border-3">@pizza.Prezzo €</td>
+</tr>
+}

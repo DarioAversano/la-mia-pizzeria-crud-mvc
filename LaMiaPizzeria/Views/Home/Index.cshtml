@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<PizzaModel>
+
+@{
     Layout = "_MioLayout";
 }
 
@@ -6,13 +8,19 @@
 
         <div class="container mt-5">
     <div class="col-12 bg-secondary border border-3">
-                <h3 style="color: darkorange; font-family: 'Pacifico', cursive;">MENU' DELLE PIZZE'</h3>
+                <h3 style="color: darkorange; font-family: 'Pacifico', cursive;">MENU' DELLE PIZZE</h3>
             </div>
             </div>
+<div class="row">
+    <div class="col-12">
+        <a class="btn btn-primary" href="@Url.Action("Creazione", "Pizza")">
+           Inserisci pizza nel menu
+        </a>
+    </div>
             <div class="row my-3">
             <div class="col-10 mx-auto">
 
-                <table class="table bg-secondary">
+        <table class="table bg-secondary bg-opacity-50">
                         <thead>
                         <tr class="background_color_orange" style="color: red; font-weight: bold">
                             <th scope="col" class="border border-3" style="font-size: 30px;">Pizza &#x1F355</th>
@@ -22,13 +30,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr style="color: darkorange; font-weight: bold">
-                            <th class="border border-3" scope="row">Margherita</th>
-                            <td class="border border-3">Pomodoro, Mozzarella, Basilico e Olio</td>
-                            <td class="border border-3"><img class="img-fluid img_square" src="~/img/margherita.png" alt="Immagine logo Bing"></td>
-                            <td class="border border-3"> 6.00 €</td>
-                            </tr>
 
+
+                @foreach (PizzaModel pizza in Model)
+                {
+                    <tr style="color: darkorange; font-weight: bold">
+                        <th class="border border-3" scope="row">@pizza.NomePizza</th>
+                        <td class="border border-3">@pizza.Descrizione</td>
+                        <td class="border  border-3"><a href="@Url.Action("SingolaPizza", "Home", new { id = pizza.Id })"><img class="img-fluid img_square" src="@pizza.Immagine" alt="@pizza.NomePizza"></a></td>
+                        <td class="border border-3">@pizza.Prezzo €</td>
+                    </tr>
+                }
+                                           
+
+@*
                         <tr style="color: darkgreen; font-weight: bold">
                             <th class="border border-3" scope="row">Marinara</th>
                             <td class="border border-3">Pomodoro, Aglio, Origano e Olio</td>
@@ -51,7 +66,7 @@
                         </tr>
 
 
-
+*@
 
 
 
