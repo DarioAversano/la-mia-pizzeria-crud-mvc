@@ -1,10 +1,10 @@
 ﻿@*
     
 @using LaMiaPizzeria.Models.Nuovacartella
-@model ProfileListArticles
+@model ProfileListPizzaMode
 
 
-@if (Model.ResultArticles.Count == 0)
+@if (Model.ResultPizzaMode.Count == 0)
 {
     <h2>Non ho trovato articoli con la ricerca "@Model.SearchString"!</h2>
 }
@@ -12,9 +12,9 @@ else
 {
     <h2>Ho trovato i seguenti articoli con la ricerca "@Model.SearchString":</h2>
     <ol>
-        @foreach (Pizza pizza in Model.ResultArticles)
+        @foreach (Pizza pizza in Model.ResultPizzaModel)
         {
-            <li>@article.Title - @article.Description</li>
+            <li>@PizzaModel.Title - @PizzaModel.Description</li>
         }
 
     </ol>
