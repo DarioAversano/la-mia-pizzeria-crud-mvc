@@ -9,6 +9,12 @@
             <label asp-for="Id" class="form-label">id pizza</label>
             <input asp-for="Id" type="text" class="form-control" readonly>
         </div>
+        <!--<input asp-for="NomePizza" hidden />-->
+        <div class="mb-3">
+            <label asp-for="NomePizza" class="form-label">NomePizza</label>
+            <input asp-for="NomePizza" rows="10" class="form-control"></input>
+            <span asp-validation-for="NomePizza" class="text-danger"></span>
+        </div>
         <div class="mb-3">
             <label asp-for="Descrizione" class="form-label">Descrizione</label>
             <textarea asp-for="Descrizione" rows="10" class="form-control"></textarea>

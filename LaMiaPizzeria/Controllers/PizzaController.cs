@@ -52,6 +52,25 @@ namespace LaMiaPizzeria.Controllers
 
         }
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult CreaNuovaPizza(PizzaModel nuovaPizza)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View("Creazione", nuovaPizza);
+        //    }
+
+        //    using (PizzaContext db = new PizzaContext())
+        //    {
+        //        db.Pizza.Add(nuovaPizza);
+        //        db.SaveChanges();
+
+        //        return RedirectToAction("Index");
+        //    }
+
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult modificaPizza(int id, PizzaModel pizzaModificata)
@@ -73,7 +92,7 @@ namespace LaMiaPizzeria.Controllers
                     pizzaDaModificare.Prezzo = pizzaModificata.Prezzo;
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -81,27 +100,6 @@ namespace LaMiaPizzeria.Controllers
                 }
             }
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult CreaNuovaPizza(PizzaModel nuovaPizza)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("Creazione", nuovaPizza);
-            }
-
-            using (PizzaContext db = new PizzaContext())
-            {
-                db.Pizza.Add(nuovaPizza);
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
-            }
-
-        }
-
-
 
 
         [HttpPost]
