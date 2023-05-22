@@ -1,11 +1,16 @@
-﻿using LaMiaPizzeria.DataBase;
-using LaMiaPizzeria.Models;
+﻿using LaMiaPizzeria.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
+
+
 namespace LaMiaPizzeria.DataBase
 {
-    public class PizzaContext : DbContext
+    public class PizzaContext : IdentityDbContext<IdentityUser>
+
     {
-         public DbSet<PizzaModel> Pizza { get; set; }
+        public DbSet<PizzaModel> Pizza { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -13,17 +18,7 @@ namespace LaMiaPizzeria.DataBase
             optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=PizzaDb;Integrated Security=True;TrustServerCertificate=True");
         }
 
-
-
-
-
-
-
     }
-
-
-
-
 
 }
 
