@@ -15,6 +15,7 @@ html {
 
 body {
   margin-bottom: 60px;
+  
 }
 
 .fontsize_large {
@@ -31,4 +32,8 @@ body {
 
 .img_square {
     aspect-ratio: 1 / 1;
+}
+
+.site-font {
+    color: white;
 }

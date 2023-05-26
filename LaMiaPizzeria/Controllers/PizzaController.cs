@@ -32,7 +32,9 @@ namespace LaMiaPizzeria.Controllers
             using (PizzaContext context = new PizzaContext())
             {
                 List<PizzaCategory> pizzacategories = context.pizzaCategories.ToList();
-                PizzaCategoryForm model = new PizzaCategoryForm(pizzacategories);
+                PizzaListCategory model = new PizzaListCategory();
+                model.Pizzas = new PizzaModel();
+                model.PizzasCategories = pizzacategories;
                 return View("Creazione", model);
             }
         }
@@ -40,7 +42,7 @@ namespace LaMiaPizzeria.Controllers
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
         [ValidateAntiForgeryToken]
-        public IActionResult Creazione(PizzaCategoryForm data)
+        public IActionResult Creazione(PizzaListCategory data)
         {
             if (!ModelState.IsValid)
             {
@@ -54,7 +56,7 @@ namespace LaMiaPizzeria.Controllers
                 modelForView.Pizzas = new PizzaModel();
                 modelForView.PizzasCategories = pizzaCategories;
 
-                context.Pizza.Add(data.Pizza);
+                context.Pizza.Add(data.Pizzas);
                 context.SaveChanges();
 
 

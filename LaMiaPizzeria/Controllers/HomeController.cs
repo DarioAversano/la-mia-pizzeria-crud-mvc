@@ -1,8 +1,8 @@
 ﻿using LaMiaPizzeria.DataBase;
 using LaMiaPizzeria.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Collections.Generic;
 
 namespace LaMiaPizzeria.Controllers
 {
@@ -23,19 +23,19 @@ namespace LaMiaPizzeria.Controllers
                 List<PizzaModel> pizze = db.Pizza.ToList();
                 return View(pizze);
             }
-            
+
         }
-       
+
         [HttpGet]
         public IActionResult SingolaPizza(int id)
         {
             using (PizzaContext db = new PizzaContext())
             {
-                PizzaModel? pizzaDettagli = db.Pizza.Where(pizza => pizza.Id == id).FirstOrDefault();
+                PizzaModel? pizzaDettagli = db.Pizza.Where(pizzaDettagli => pizzaDettagli.Id == id).Include(pizzaDettagli => pizzaDettagli.Category).FirstOrDefault();
 
                 if (pizzaDettagli != null)
                 {
-                    return View(pizzaDettagli);
+                    return View("SingolaPizza", pizzaDettagli);
                 }
                 else
                 {
@@ -43,9 +43,9 @@ namespace LaMiaPizzeria.Controllers
                 }
             }
         }
-    
 
-    [HttpGet]
+
+        [HttpGet]
 
         public IActionResult Privacy()
         {
