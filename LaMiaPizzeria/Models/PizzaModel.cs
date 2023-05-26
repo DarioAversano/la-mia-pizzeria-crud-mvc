@@ -1,7 +1,6 @@
 ﻿using LaMiaPizzeria.Models.Validazione;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace LaMiaPizzeria.Models
 {
@@ -33,13 +32,17 @@ namespace LaMiaPizzeria.Models
 
         }
 
+        public int? PizzaCategoryId { get; set; }
+        public PizzaCategory? Category { get; set; }
+
+
 
         public PizzaModel(string nomePizza, string descrizione, string immagine, float prezzo)
         {
             NomePizza = nomePizza;
             Descrizione = descrizione;
             Immagine = immagine;
-                Prezzo = prezzo;
+            Prezzo = prezzo;
         }
 
     }

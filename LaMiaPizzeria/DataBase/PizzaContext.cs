@@ -11,7 +11,7 @@ namespace LaMiaPizzeria.DataBase
 
     {
         public DbSet<PizzaModel> Pizza { get; set; }
-
+        public DbSet<PizzaCategory> pizzaCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

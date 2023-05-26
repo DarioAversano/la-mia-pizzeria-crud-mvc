@@ -1,7 +1,9 @@
 ﻿using LaMiaPizzeria.DataBase;
 using LaMiaPizzeria.Models;
+using LaMiaPizzeria.Models.ModelForView;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace LaMiaPizzeria.Controllers
 {
@@ -17,28 +19,44 @@ namespace LaMiaPizzeria.Controllers
             }
 
         }
+
+
+
+
+
         // AZIONE PER LA CREAZIONE DI UNA PIZZA SIMILE A QUELLA DELLA MODIFICA 
         [HttpGet]
         [Authorize(Roles = "ADMIN")]
         public IActionResult Creazione()
         {
-            return View();
+            using (PizzaContext context = new PizzaContext())
+            {
+                List<PizzaCategory> pizzacategories = context.pizzaCategories.ToList();
+                PizzaCategoryForm model = new PizzaCategoryForm(pizzacategories);
+                return View("Creazione", model);
+            }
         }
 
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
         [ValidateAntiForgeryToken]
-        public IActionResult Creazione(PizzaModel nuovaPizza)
+        public IActionResult Creazione(PizzaCategoryForm data)
         {
             if (!ModelState.IsValid)
             {
-                return View("Creazione", nuovaPizza);
+                return View("Creazione", data);
             }
 
-            using (PizzaContext db = new PizzaContext())
+            using (PizzaContext context = new PizzaContext())
             {
-                db.Pizza.Add(nuovaPizza);
-                db.SaveChanges();
+                List<PizzaCategory> pizzaCategories = context.pizzaCategories.ToList();
+                PizzaListCategory modelForView = new PizzaListCategory();
+                modelForView.Pizzas = new PizzaModel();
+                modelForView.PizzasCategories = pizzaCategories;
+
+                context.Pizza.Add(data.Pizza);
+                context.SaveChanges();
+
 
                 return RedirectToAction("Index");
             }
